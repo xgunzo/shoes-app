@@ -3,58 +3,37 @@ package com.example.shoesapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.shoesapp.components.TopBar
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.getValue
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.shoesapp.navigation.SetupNavGraph
 import com.example.shoesapp.ui.theme.ShoesAppTheme
+import com.example.shoesapp.viewmodel.SplashViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@ExperimentalAnimationApi
+@ExperimentalPagerApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var splashViewModel: SplashViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen().setKeepOnScreenCondition {
+            !splashViewModel.isLoading.value
+        }
+
         setContent {
             ShoesAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-
-                    TopBar()
-                    Column() {
-                        Text("test")
-                    }
-                    Spacer(modifier = Modifier.height(30.dp))
-                    Column() {
-                       Text("test")
-                    }
-                }
+                val screen by splashViewModel.startDestination
+                val navController = rememberNavController()
+                SetupNavGraph(navController = navController, startDestination = screen)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ShoesAppTheme {
-        Greeting("Android")
     }
 }
