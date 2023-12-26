@@ -3,12 +3,20 @@ package com.example.shoesapp.screen
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,7 +30,12 @@ import androidx.navigation.NavHostController
 import com.example.shoesapp.navigation.Screen
 import com.example.shoesapp.util.OnBoardingPage
 import com.example.shoesapp.viewmodel.WelcomeViewModel
-import com.google.accompanist.pager.*
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.HorizontalPagerIndicator
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
@@ -31,6 +44,13 @@ fun WelcomeScreen(
     navController: NavHostController,
     welcomeViewModel: WelcomeViewModel = hiltViewModel()
 ) {
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color.DarkGray
+        )
+    }
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -74,8 +94,8 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
     ) {
         Image(
             modifier = Modifier
-                .fillMaxWidth(0.5f)
-                .fillMaxHeight(0.7f),
+                .width(350.dp)
+                .height(350.dp),
             painter = painterResource(id = onBoardingPage.image),
             contentDescription = "Pager Image"
         )
@@ -121,10 +141,12 @@ fun FinishButton(
             Button(
                 onClick = onClick,
                 colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.White
-                )
+                    contentColor = Color.White,
+                    backgroundColor = Color.DarkGray,
+                ),
+                modifier = Modifier.height(40.dp)
             ) {
-                Text(text = "Finish")
+                Text(text = "LET'S BEGIN!")
             }
         }
     }
