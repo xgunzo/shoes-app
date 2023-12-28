@@ -31,7 +31,7 @@ fun SetupNavGraph(
             HomeScreen(navController = navController)
         }
         composable(route = Screen.AirJordan.route) {
-            AirJordanScreen()
+            AirJordanScreen(navController = navController)
         }
         composable(route = Screen.AirMax.route) {
             AirMaxScreen()
