@@ -55,7 +55,8 @@ fun HomeScreen() {
             Box(
                 modifier = Modifier
                     .background(color = Color.DarkGray)
-                    .padding(horizontal = 45.dp, vertical = 30.dp)
+                    .padding(horizontal = 15.dp, vertical = 30.dp)
+                    .weight(4f)
                     .clickable { Log.d("clicked", "BoxExample: true") },
                 contentAlignment = Alignment.Center
             ) {
@@ -68,7 +69,8 @@ fun HomeScreen() {
             Box(
                 modifier = Modifier
                     .background(color = Color.DarkGray)
-                    .padding(horizontal = 45.dp, vertical = 30.dp)
+                    .padding(horizontal = 15.dp, vertical = 30.dp)
+                    .weight(4f)
                     .clickable { Log.d("clicked", "BoxExample: true") },
                 contentAlignment = Alignment.Center
             ) {
@@ -84,7 +86,8 @@ fun HomeScreen() {
             Box(
                 modifier = Modifier
                     .background(color = Color.DarkGray)
-                    .padding(horizontal = 45.dp, vertical = 30.dp)
+                    .padding(horizontal = 15.dp, vertical = 30.dp)
+                    .weight(4f)
                     .clickable { Log.d("clicked", "BoxExample: true") },
                 contentAlignment = Alignment.Center
             ) {
@@ -97,7 +100,8 @@ fun HomeScreen() {
             Box(
                 modifier = Modifier
                     .background(color = Color.DarkGray)
-                    .padding(horizontal = 45.dp, vertical = 30.dp)
+                    .padding(horizontal = 15.dp, vertical = 30.dp)
+                    .weight(4f)
                     .clickable { Log.d("clicked", "BoxExample: true") },
                 contentAlignment = Alignment.Center
             ) {
