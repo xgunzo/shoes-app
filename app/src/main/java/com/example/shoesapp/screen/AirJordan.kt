@@ -58,7 +58,7 @@ fun AirJordanScreen(navController: NavHostController, modifier: Modifier = Modif
         R.drawable.aj5laney,
         R.drawable.aj1allstar,
     )
-    val ingredients = arrayOf(
+    val releases = arrayOf(
         "2016, June",
         "2013, September",
         "2017, March",
@@ -102,14 +102,14 @@ fun AirJordanScreen(navController: NavHostController, modifier: Modifier = Modif
             )
         },
     ) {innerPadding ->
-        MyApp(imageId, names, ingredients, codes)
+        MyApp(imageId, names, releases, codes)
     }
 }
 @Composable
 fun MyApp(
     imageId: Array<Int>,
     names: Array<String>,
-    ingredients: Array<String>,
+    releases: Array<String>,
     codes: Array<String>,
     modifier: Modifier = Modifier
 ) {
@@ -126,7 +126,7 @@ fun MyApp(
                 itemIndex = item,
                 painter = imageId,
                 title = names,
-                ingredients = ingredients,
+                releases = releases,
                 codes = codes,
                 modifier
             )
@@ -141,7 +141,7 @@ fun ColumnItem(
     itemIndex: Int,
     painter: Array<Int>,
     title: Array<String>,
-    ingredients: Array<String>,
+    releases: Array<String>,
     codes: Array<String>,
     modifier: Modifier
 ) {
@@ -174,7 +174,7 @@ fun ColumnItem(
                 Text(text = "Release date:",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium)
-                Text(text = ingredients[itemIndex],
+                Text(text = releases[itemIndex],
                     fontSize = 14.sp)
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(text = "Style code:",
