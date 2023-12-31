@@ -37,7 +37,7 @@ fun SetupNavGraph(
             AirMaxScreen(navController = navController, names = listOf())
         }
         composable(route = Screen.AirForce.route) {
-            AirForceScreen()
+            AirForceScreen(navController = navController, names = listOf())
         }
         composable(route = Screen.AirFlight.route) {
             AirFlightScreen()
